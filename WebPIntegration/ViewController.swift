@@ -92,16 +92,16 @@ final class ViewController: UIViewController {
             
             var documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
             documents = documents.stringByAppendingString("image.webp")
-
-            // Save webP to disk (For FSNCachemanager or something similar...)
-            let imagePNGData = UIImageWebPRepresentation(imagePNG)
             
-            imagePNGData.writeToFile(documents, atomically: true)
+            // Save webP to disk (For FSNCachemanager or something similar...)
+            let imageWebPSaveData = UIImageWebPRepresentation(imagePNG)
+            
+            imageWebPSaveData.writeToFile(documents, atomically: true)
             
             // Load webP from disk
-            guard let imageWebPData = NSData(contentsOfFile: documents) else { return }
+            guard let imageWebPLoadData = NSData(contentsOfFile: documents) else { return }
             
-            let imageWebP = UIImageWithWebPData(imageWebPData)
+            let imageWebP = UIImageWithWebPData(imageWebPLoadData)
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.dismissViewControllerAnimated(true, completion: nil)
