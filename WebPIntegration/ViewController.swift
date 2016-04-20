@@ -55,7 +55,7 @@ final class ViewController: UIViewController {
 //        let urlString = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_March_2010-1.jpg"
 //        let urlString = "http://res.freestockphotos.biz/pictures/2/2706-outdoor-portrait-of-a-beautiful-teen-girl-pv.jpg"
 //        let urlString = "http://www.inet.hr/~vkolbas/img.jpg"
-        let urlString = "https://i.ytimg.com/vi/tiRZ7YQKUgQ/maxresdefault.jpg"
+        let urlString = "http://glamradar.com/wp-content/uploads/2014/08/dewy-skin-selfie-makeup.jpg"
         
         guard let url = NSURL(string: urlString) else { return }
         
@@ -75,7 +75,7 @@ final class ViewController: UIViewController {
             let webpData = UIImageWebPRepresentation(jpegImage, .PicturePreset, 50.0, nil)
             print (jpegData.length / 1024, webpData.length / 1024 )
             // get webP from data for displaying
-            let webpImage = UIImageWithWebPData(webpData)
+            let webpImage = UIImageWithWebPData(webpData, 0.0, nil)
             
             // Possibly save webpImage to cache, and display it
             dispatch_async(dispatch_get_main_queue()) {
