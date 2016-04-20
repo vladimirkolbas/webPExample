@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            imageView.contentMode = .ScaleAspectFit
+            imageView.contentMode = .ScaleAspectFill
         }
     }
 
@@ -52,17 +52,22 @@ final class ViewController: UIViewController {
         let alertController = UIAlertController(title: "Loading Jpeg from the web", message: "Please wait...", preferredStyle: .Alert)
         presentViewController(alertController, animated: true, completion: nil)
         
-        let urlString = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_March_2010-1.jpg"
+//        let urlString = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_March_2010-1.jpg"
+//        let urlString = "http://res.freestockphotos.biz/pictures/2/2706-outdoor-portrait-of-a-beautiful-teen-girl-pv.jpg"
+//        let urlString = "http://www.inet.hr/~vkolbas/img.jpg"
+        let urlString = "http://lorempixel.com/568/1136"
+        
         guard let url = NSURL(string: urlString) else { return }
         
         // Download the JPEG from web
         downloadTask = session.downloadTaskWithURL(url, completionHandler: { [weak self] (localURL, _, _) in
-            guard let jpegData = NSData(contentsOfURL: url) else { return }
+            print("Done")
+            guard let jpegData = NSData(contentsOfURL: localURL!) else { print("No data"); return }
             guard let jpegImage = UIImage(data: jpegData) else { return }
-            
+            print("AFtert done")
             // get webP data from JPEG for saving to cache?
-            let webpData = UIImageWebPRepresentation(jpegImage)
-            
+            let webpData = UIImageWebPRepresentation(jpegImage, .PicturePreset, 50.0, nil)
+            print (jpegData.length / 1024, webpData.length / 1024 )
             // get webP from data for displaying
             let webpImage = UIImageWithWebPData(webpData)
             
@@ -74,6 +79,7 @@ final class ViewController: UIViewController {
         })
         
         downloadTask?.resume()
+        print("Starting task")
     }
     
     /// Load local PNG, convert to webP and display

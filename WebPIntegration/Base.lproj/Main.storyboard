@@ -18,45 +18,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-0L-nqD">
-                                <rect key="frame" x="244" y="318" width="113" height="30"/>
+                                <rect key="frame" x="244" y="469" width="113" height="30"/>
                                 <state key="normal" title="Fetch web webP"/>
                                 <connections>
                                     <action selector="fetchWebPAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z3k-Xh-qMv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cL-6O-Zqx">
-                                <rect key="frame" x="237" y="361" width="126" height="30"/>
+                                <rect key="frame" x="237" y="512" width="126" height="30"/>
                                 <state key="normal" title="Convert local PNG"/>
                                 <connections>
                                     <action selector="localPNGAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="80T-7B-76F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2V-DL-t26">
-                                <rect key="frame" x="196" y="399" width="209" height="30"/>
+                                <rect key="frame" x="196" y="550" width="209" height="30"/>
                                 <state key="normal" title="Fetch and convert remote JPG"/>
                                 <connections>
                                     <action selector="fetchWebJPEGAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="64Y-vD-wJw"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zF9-vM-XAX">
-                                <rect key="frame" x="180" y="59" width="240" height="238"/>
+                                <rect key="frame" x="20" y="20" width="560" height="428"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="238" id="W8K-8N-ct4"/>
-                                    <constraint firstAttribute="width" constant="240" id="dXx-Wi-QUs"/>
+                                    <constraint firstAttribute="height" constant="428" id="W8K-8N-ct4"/>
+                                    <constraint firstAttribute="width" constant="560" id="dXx-Wi-QUs"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="W8K-8N-ct4"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="h2V-DL-t26" firstAttribute="centerX" secondItem="6cL-6O-Zqx" secondAttribute="centerX" id="5xe-6i-w35"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h2V-DL-t26" secondAttribute="bottom" constant="20" id="IpM-dF-9uQ"/>
                             <constraint firstItem="8wA-0L-nqD" firstAttribute="centerX" secondItem="zF9-vM-XAX" secondAttribute="centerX" id="U0m-xy-UPS"/>
-                            <constraint firstItem="zF9-vM-XAX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="a5b-TF-I91"/>
+                            <constraint firstItem="zF9-vM-XAX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="a5b-TF-I91"/>
+                            <constraint firstItem="8wA-0L-nqD" firstAttribute="top" secondItem="zF9-vM-XAX" secondAttribute="bottom" constant="21" id="cxK-LQ-uIS"/>
                             <constraint firstItem="h2V-DL-t26" firstAttribute="top" secondItem="6cL-6O-Zqx" secondAttribute="bottom" constant="8" id="fAl-4H-71U"/>
                             <constraint firstItem="6cL-6O-Zqx" firstAttribute="centerX" secondItem="8wA-0L-nqD" secondAttribute="centerX" id="hKg-sI-OFX"/>
                             <constraint firstItem="6cL-6O-Zqx" firstAttribute="top" secondItem="8wA-0L-nqD" secondAttribute="bottom" constant="13" id="rAS-fd-TNt"/>
                             <constraint firstItem="zF9-vM-XAX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="txk-Mj-Rpb"/>
-                            <constraint firstItem="8wA-0L-nqD" firstAttribute="top" secondItem="zF9-vM-XAX" secondAttribute="bottom" constant="21" id="uyo-ob-V7p"/>
                         </constraints>
                     </view>
                     <connections>
