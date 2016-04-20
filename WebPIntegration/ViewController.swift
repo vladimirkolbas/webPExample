@@ -55,7 +55,7 @@ final class ViewController: UIViewController {
 //        let urlString = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_March_2010-1.jpg"
 //        let urlString = "http://res.freestockphotos.biz/pictures/2/2706-outdoor-portrait-of-a-beautiful-teen-girl-pv.jpg"
 //        let urlString = "http://www.inet.hr/~vkolbas/img.jpg"
-        let urlString = "http://glamradar.com/wp-content/uploads/2014/08/dewy-skin-selfie-makeup.jpg"
+        let urlString = "http://www.makeup.com/~/media/Images/Makeup/2016/02/pros-predict-fall-makeup-trends/79048-MDC-ProsPredictFallMakeupTrends-FT.png"
         
         guard let url = NSURL(string: urlString) else { return }
         
@@ -74,8 +74,21 @@ final class ViewController: UIViewController {
             // get webP data from JPEG for saving to cache?
             let webpData = UIImageWebPRepresentation(jpegImage, .PicturePreset, 50.0, nil)
             print (jpegData.length / 1024, webpData.length / 1024 )
+            
+            var documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+            documents = documents.stringByAppendingString("/saved.webp")
+            print(documents)
+            
+            // Save for later fetching
+            if webpData.writeToFile(documents, atomically: true) {
+                print ("Saved")
+            } else {
+                print("Not saved")
+            }
+            
             // get webP from data for displaying
-            let webpImage = UIImageWithWebPData(webpData, 0.0, nil)
+            let readData = NSData(contentsOfFile: documents)!
+            let webpImage = UIImageWithWebPData(readData)
             
             // Possibly save webpImage to cache, and display it
             dispatch_async(dispatch_get_main_queue()) {
@@ -103,12 +116,16 @@ final class ViewController: UIViewController {
             let imagePNG = UIImage(named: "galaxy.png")
             
             var documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-            documents = documents.stringByAppendingString("image.webp")
+            documents = documents.stringByAppendingString("/image.webp")
             
             // Save webP to disk (For FSNCachemanager or something similar...)
             let imageWebPSaveData = UIImageWebPRepresentation(imagePNG)
             
-            imageWebPSaveData.writeToFile(documents, atomically: true)
+            if imageWebPSaveData.writeToFile(documents, atomically: true) {
+                print("Saved")
+            } else {
+                print("Not saved")
+            }
             
             // Load webP from disk
             guard let imageWebPLoadData = NSData(contentsOfFile: documents) else { return }
